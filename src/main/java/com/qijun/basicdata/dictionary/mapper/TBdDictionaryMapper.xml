@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qijun.basicdata.dictionary.mapper.TBdDictionaryMapper" >
+  <resultMap id="BaseResultMap" type="com.qijun.basicdata.dictionary.pojo.TBdDictionary" >
+    <id column="dictionary_id" property="dictionaryId" jdbcType="BIGINT" />
+    <result column="dictionary_common_cata" property="dictionaryCommonCata" jdbcType="VARCHAR" />
+    <result column="dictionary_detail_cata" property="dictionaryDetailCata" jdbcType="VARCHAR" />
+    <result column="dictionary_content" property="dictionaryContent" jdbcType="VARCHAR" />
+    <result column="dictionary_order" property="dictionaryOrder" jdbcType="INTEGER" />
+    <result column="dictionary_notes" property="dictionaryNotes" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    dictionary_id, dictionary_common_cata, dictionary_detail_cata, dictionary_content, 
+    dictionary_order, dictionary_notes
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qijun.basicdata.dictionary.pojo.TBdDictionaryExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_bd_dictionary
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_bd_dictionary
+    where dictionary_id = #{dictionaryId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_bd_dictionary
+    where dictionary_id = #{dictionaryId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qijun.basicdata.dictionary.pojo.TBdDictionaryExample" >
+    delete from t_bd_dictionary
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qijun.basicdata.dictionary.pojo.TBdDictionary" >
+    insert into t_bd_dictionary (dictionary_id, dictionary_common_cata, 
+      dictionary_detail_cata, dictionary_content, 
+      dictionary_order, dictionary_notes)
+    values (#{dictionaryId,jdbcType=BIGINT}, #{dictionaryCommonCata,jdbcType=VARCHAR}, 
+      #{dictionaryDetailCata,jdbcType=VARCHAR}, #{dictionaryContent,jdbcType=VARCHAR}, 
+      #{dictionaryOrder,jdbcType=INTEGER}, #{dictionaryNotes,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qijun.basicdata.dictionary.pojo.TBdDictionary" >
+    insert into t_bd_dictionary
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dictionaryId != null" >
+        dictionary_id,
+      </if>
+      <if test="dictionaryCommonCata != null" >
+        dictionary_common_cata,
+      </if>
+      <if test="dictionaryDetailCata != null" >
+        dictionary_detail_cata,
+      </if>
+      <if test="dictionaryContent != null" >
+        dictionary_content,
+      </if>
+      <if test="dictionaryOrder != null" >
+        dictionary_order,
+      </if>
+      <if test="dictionaryNotes != null" >
+        dictionary_notes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dictionaryId != null" >
+        #{dictionaryId,jdbcType=BIGINT},
+      </if>
+      <if test="dictionaryCommonCata != null" >
+        #{dictionaryCommonCata,jdbcType=VARCHAR},
+      </if>
+      <if test="dictionaryDetailCata != null" >
+        #{dictionaryDetailCata,jdbcType=VARCHAR},
+      </if>
+      <if test="dictionaryContent != null" >
+        #{dictionaryContent,jdbcType=VARCHAR},
+      </if>
+      <if test="dictionaryOrder != null" >
+        #{dictionaryOrder,jdbcType=INTEGER},
+      </if>
+      <if test="dictionaryNotes != null" >
+        #{dictionaryNotes,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qijun.basicdata.dictionary.pojo.TBdDictionaryExample" resultType="java.lang.Integer" >
+    select count(*) from t_bd_dictionary
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_bd_dictionary
+    <set >
+      <if test="record.dictionaryId != null" >
+        dictionary_id = #{record.dictionaryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.dictionaryCommonCata != null" >
+        dictionary_common_cata = #{record.dictionaryCommonCata,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dictionaryDetailCata != null" >
+        dictionary_detail_cata = #{record.dictionaryDetailCata,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dictionaryContent != null" >
+        dictionary_content = #{record.dictionaryContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dictionaryOrder != null" >
+        dictionary_order = #{record.dictionaryOrder,jdbcType=INTEGER},
+      </if>
+      <if test="record.dictionaryNotes != null" >
+        dictionary_notes = #{record.dictionaryNotes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_bd_dictionary
+    set dictionary_id = #{record.dictionaryId,jdbcType=BIGINT},
+      dictionary_common_cata = #{record.dictionaryCommonCata,jdbcType=VARCHAR},
+      dictionary_detail_cata = #{record.dictionaryDetailCata,jdbcType=VARCHAR},
+      dictionary_content = #{record.dictionaryContent,jdbcType=VARCHAR},
+      dictionary_order = #{record.dictionaryOrder,jdbcType=INTEGER},
+      dictionary_notes = #{record.dictionaryNotes,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qijun.basicdata.dictionary.pojo.TBdDictionary" >
+    update t_bd_dictionary
+    <set >
+      <if test="dictionaryCommonCata != null" >
+        dictionary_common_cata = #{dictionaryCommonCata,jdbcType=VARCHAR},
+      </if>
+      <if test="dictionaryDetailCata != null" >
+        dictionary_detail_cata = #{dictionaryDetailCata,jdbcType=VARCHAR},
+      </if>
+      <if test="dictionaryContent != null" >
+        dictionary_content = #{dictionaryContent,jdbcType=VARCHAR},
+      </if>
+      <if test="dictionaryOrder != null" >
+        dictionary_order = #{dictionaryOrder,jdbcType=INTEGER},
+      </if>
+      <if test="dictionaryNotes != null" >
+        dictionary_notes = #{dictionaryNotes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where dictionary_id = #{dictionaryId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qijun.basicdata.dictionary.pojo.TBdDictionary" >
+    update t_bd_dictionary
+    set dictionary_common_cata = #{dictionaryCommonCata,jdbcType=VARCHAR},
+      dictionary_detail_cata = #{dictionaryDetailCata,jdbcType=VARCHAR},
+      dictionary_content = #{dictionaryContent,jdbcType=VARCHAR},
+      dictionary_order = #{dictionaryOrder,jdbcType=INTEGER},
+      dictionary_notes = #{dictionaryNotes,jdbcType=VARCHAR}
+    where dictionary_id = #{dictionaryId,jdbcType=BIGINT}
+  </update>
+</mapper>
