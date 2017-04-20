@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qijun.basicdata.person.mapper.VBdPersonDepartUnitMapper" >
+  <resultMap id="BaseResultMap" type="com.qijun.basicdata.person.pojo.VBdPersonDepartUnit" >
+    <id column="t_person_id" property="tPersonId" jdbcType="VARCHAR" />
+    <result column="t_person_type" property="tPersonType" jdbcType="VARCHAR" />
+    <result column="t_person_username" property="tPersonUsername" jdbcType="VARCHAR" />
+    <result column="t_person_pwd" property="tPersonPwd" jdbcType="VARCHAR" />
+    <result column="t_person_truename" property="tPersonTruename" jdbcType="VARCHAR" />
+    <result column="t_person_sex" property="tPersonSex" jdbcType="VARCHAR" />
+    <result column="t_person_en_name" property="tPersonEnName" jdbcType="VARCHAR" />
+    <result column="t_person_name_used" property="tPersonNameUsed" jdbcType="VARCHAR" />
+    <result column="t_person_telephone" property="tPersonTelephone" jdbcType="VARCHAR" />
+    <result column="t_person_fax" property="tPersonFax" jdbcType="VARCHAR" />
+    <result column="t_person_addr" property="tPersonAddr" jdbcType="VARCHAR" />
+    <result column="t_person_mobilephone" property="tPersonMobilephone" jdbcType="VARCHAR" />
+    <result column="t_person_email" property="tPersonEmail" jdbcType="VARCHAR" />
+    <result column="t_person_qq" property="tPersonQq" jdbcType="VARCHAR" />
+    <result column="t_person_wetchat" property="tPersonWetchat" jdbcType="VARCHAR" />
+    <result column="t_person_duty" property="tPersonDuty" jdbcType="VARCHAR" />
+    <result column="t_person_title" property="tPersonTitle" jdbcType="VARCHAR" />
+    <result column="t_person_identify_num" property="tPersonIdentifyNum" jdbcType="VARCHAR" />
+    <result column="t_person_birth" property="tPersonBirth" jdbcType="DATE" />
+    <result column="t_person_nation" property="tPersonNation" jdbcType="VARCHAR" />
+    <result column="t_person_highest_degree" property="tPersonHighestDegree" jdbcType="VARCHAR" />
+    <result column="t_person_politics_status" property="tPersonPoliticsStatus" jdbcType="VARCHAR" />
+    <result column="t_person_take_job_date" property="tPersonTakeJobDate" jdbcType="DATE" />
+    <result column="t_person_join_work_date" property="tPersonJoinWorkDate" jdbcType="DATE" />
+    <result column="t_person_hobbay" property="tPersonHobbay" jdbcType="VARCHAR" />
+    <result column="t_person_node_attribute_id" property="tPersonNodeAttributeId" jdbcType="BIGINT" />
+    <result column="t_person_notes" property="tPersonNotes" jdbcType="VARCHAR" />
+    <result column="t_person_depart_id" property="tPersonDepartId" jdbcType="BIGINT" />
+    <result column="t_person_unit_id" property="tPersonUnitId" jdbcType="BIGINT" />
+    <result column="depart_name" property="departName" jdbcType="VARCHAR" />
+    <result column="unit_name" property="unitName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    t_person_id, t_person_type, t_person_username, t_person_pwd, t_person_truename, t_person_sex, 
+    t_person_en_name, t_person_name_used, t_person_telephone, t_person_fax, t_person_addr, 
+    t_person_mobilephone, t_person_email, t_person_qq, t_person_wetchat, t_person_duty, 
+    t_person_title, t_person_identify_num, t_person_birth, t_person_nation, t_person_highest_degree, 
+    t_person_politics_status, t_person_take_job_date, t_person_join_work_date, t_person_hobbay, 
+    t_person_node_attribute_id, t_person_notes, t_person_depart_id, t_person_unit_id, 
+    depart_name, unit_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qijun.basicdata.person.pojo.VBdPersonDepartUnitExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from v_bd_person_depart_unit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from v_bd_person_depart_unit
+    where t_person_id = #{tPersonId,jdbcType=VARCHAR}
+  </select>
+
+  <delete id="deleteByExample" parameterType="com.qijun.basicdata.person.pojo.VBdPersonDepartUnitExample" >
+    delete from v_bd_person_depart_unit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qijun.basicdata.person.pojo.VBdPersonDepartUnit" >
+    insert into v_bd_person_depart_unit (t_person_id, t_person_type, t_person_username, 
+      t_person_pwd, t_person_truename, t_person_sex, 
+      t_person_en_name, t_person_name_used, t_person_telephone, 
+      t_person_fax, t_person_addr, t_person_mobilephone, 
+      t_person_email, t_person_qq, t_person_wetchat, 
+      t_person_duty, t_person_title, t_person_identify_num, 
+      t_person_birth, t_person_nation, t_person_highest_degree, 
+      t_person_politics_status, t_person_take_job_date, 
+      t_person_join_work_date, t_person_hobbay, t_person_node_attribute_id, 
+      t_person_notes, t_person_depart_id, t_person_unit_id, 
+      depart_name, unit_name)
+    values (#{tPersonId,jdbcType=VARCHAR}, #{tPersonType,jdbcType=VARCHAR}, #{tPersonUsername,jdbcType=VARCHAR}, 
+      #{tPersonPwd,jdbcType=VARCHAR}, #{tPersonTruename,jdbcType=VARCHAR}, #{tPersonSex,jdbcType=VARCHAR}, 
+      #{tPersonEnName,jdbcType=VARCHAR}, #{tPersonNameUsed,jdbcType=VARCHAR}, #{tPersonTelephone,jdbcType=VARCHAR}, 
+      #{tPersonFax,jdbcType=VARCHAR}, #{tPersonAddr,jdbcType=VARCHAR}, #{tPersonMobilephone,jdbcType=VARCHAR}, 
+      #{tPersonEmail,jdbcType=VARCHAR}, #{tPersonQq,jdbcType=VARCHAR}, #{tPersonWetchat,jdbcType=VARCHAR}, 
+      #{tPersonDuty,jdbcType=VARCHAR}, #{tPersonTitle,jdbcType=VARCHAR}, #{tPersonIdentifyNum,jdbcType=VARCHAR}, 
+      #{tPersonBirth,jdbcType=DATE}, #{tPersonNation,jdbcType=VARCHAR}, #{tPersonHighestDegree,jdbcType=VARCHAR}, 
+      #{tPersonPoliticsStatus,jdbcType=VARCHAR}, #{tPersonTakeJobDate,jdbcType=DATE}, 
+      #{tPersonJoinWorkDate,jdbcType=DATE}, #{tPersonHobbay,jdbcType=VARCHAR}, #{tPersonNodeAttributeId,jdbcType=BIGINT}, 
+      #{tPersonNotes,jdbcType=VARCHAR}, #{tPersonDepartId,jdbcType=BIGINT}, #{tPersonUnitId,jdbcType=BIGINT}, 
+      #{departName,jdbcType=VARCHAR}, #{unitName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qijun.basicdata.person.pojo.VBdPersonDepartUnit" >
+    insert into v_bd_person_depart_unit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tPersonId != null" >
+        t_person_id,
+      </if>
+      <if test="tPersonType != null" >
+        t_person_type,
+      </if>
+      <if test="tPersonUsername != null" >
+        t_person_username,
+      </if>
+      <if test="tPersonPwd != null" >
+        t_person_pwd,
+      </if>
+      <if test="tPersonTruename != null" >
+        t_person_truename,
+      </if>
+      <if test="tPersonSex != null" >
+        t_person_sex,
+      </if>
+      <if test="tPersonEnName != null" >
+        t_person_en_name,
+      </if>
+      <if test="tPersonNameUsed != null" >
+        t_person_name_used,
+      </if>
+      <if test="tPersonTelephone != null" >
+        t_person_telephone,
+      </if>
+      <if test="tPersonFax != null" >
+        t_person_fax,
+      </if>
+      <if test="tPersonAddr != null" >
+        t_person_addr,
+      </if>
+      <if test="tPersonMobilephone != null" >
+        t_person_mobilephone,
+      </if>
+      <if test="tPersonEmail != null" >
+        t_person_email,
+      </if>
+      <if test="tPersonQq != null" >
+        t_person_qq,
+      </if>
+      <if test="tPersonWetchat != null" >
+        t_person_wetchat,
+      </if>
+      <if test="tPersonDuty != null" >
+        t_person_duty,
+      </if>
+      <if test="tPersonTitle != null" >
+        t_person_title,
+      </if>
+      <if test="tPersonIdentifyNum != null" >
+        t_person_identify_num,
+      </if>
+      <if test="tPersonBirth != null" >
+        t_person_birth,
+      </if>
+      <if test="tPersonNation != null" >
+        t_person_nation,
+      </if>
+      <if test="tPersonHighestDegree != null" >
+        t_person_highest_degree,
+      </if>
+      <if test="tPersonPoliticsStatus != null" >
+        t_person_politics_status,
+      </if>
+      <if test="tPersonTakeJobDate != null" >
+        t_person_take_job_date,
+      </if>
+      <if test="tPersonJoinWorkDate != null" >
+        t_person_join_work_date,
+      </if>
+      <if test="tPersonHobbay != null" >
+        t_person_hobbay,
+      </if>
+      <if test="tPersonNodeAttributeId != null" >
+        t_person_node_attribute_id,
+      </if>
+      <if test="tPersonNotes != null" >
+        t_person_notes,
+      </if>
+      <if test="tPersonDepartId != null" >
+        t_person_depart_id,
+      </if>
+      <if test="tPersonUnitId != null" >
+        t_person_unit_id,
+      </if>
+      <if test="departName != null" >
+        depart_name,
+      </if>
+      <if test="unitName != null" >
+        unit_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tPersonId != null" >
+        #{tPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonType != null" >
+        #{tPersonType,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonUsername != null" >
+        #{tPersonUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonPwd != null" >
+        #{tPersonPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonTruename != null" >
+        #{tPersonTruename,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonSex != null" >
+        #{tPersonSex,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonEnName != null" >
+        #{tPersonEnName,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonNameUsed != null" >
+        #{tPersonNameUsed,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonTelephone != null" >
+        #{tPersonTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonFax != null" >
+        #{tPersonFax,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonAddr != null" >
+        #{tPersonAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonMobilephone != null" >
+        #{tPersonMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonEmail != null" >
+        #{tPersonEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonQq != null" >
+        #{tPersonQq,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonWetchat != null" >
+        #{tPersonWetchat,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonDuty != null" >
+        #{tPersonDuty,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonTitle != null" >
+        #{tPersonTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonIdentifyNum != null" >
+        #{tPersonIdentifyNum,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonBirth != null" >
+        #{tPersonBirth,jdbcType=DATE},
+      </if>
+      <if test="tPersonNation != null" >
+        #{tPersonNation,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonHighestDegree != null" >
+        #{tPersonHighestDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonPoliticsStatus != null" >
+        #{tPersonPoliticsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonTakeJobDate != null" >
+        #{tPersonTakeJobDate,jdbcType=DATE},
+      </if>
+      <if test="tPersonJoinWorkDate != null" >
+        #{tPersonJoinWorkDate,jdbcType=DATE},
+      </if>
+      <if test="tPersonHobbay != null" >
+        #{tPersonHobbay,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonNodeAttributeId != null" >
+        #{tPersonNodeAttributeId,jdbcType=BIGINT},
+      </if>
+      <if test="tPersonNotes != null" >
+        #{tPersonNotes,jdbcType=VARCHAR},
+      </if>
+      <if test="tPersonDepartId != null" >
+        #{tPersonDepartId,jdbcType=BIGINT},
+      </if>
+      <if test="tPersonUnitId != null" >
+        #{tPersonUnitId,jdbcType=BIGINT},
+      </if>
+      <if test="departName != null" >
+        #{departName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitName != null" >
+        #{unitName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qijun.basicdata.person.pojo.VBdPersonDepartUnitExample" resultType="java.lang.Integer" >
+    select count(*) from v_bd_person_depart_unit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update v_bd_person_depart_unit
+    <set >
+      <if test="record.tPersonId != null" >
+        t_person_id = #{record.tPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonType != null" >
+        t_person_type = #{record.tPersonType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonUsername != null" >
+        t_person_username = #{record.tPersonUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonPwd != null" >
+        t_person_pwd = #{record.tPersonPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonTruename != null" >
+        t_person_truename = #{record.tPersonTruename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonSex != null" >
+        t_person_sex = #{record.tPersonSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonEnName != null" >
+        t_person_en_name = #{record.tPersonEnName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonNameUsed != null" >
+        t_person_name_used = #{record.tPersonNameUsed,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonTelephone != null" >
+        t_person_telephone = #{record.tPersonTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonFax != null" >
+        t_person_fax = #{record.tPersonFax,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonAddr != null" >
+        t_person_addr = #{record.tPersonAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonMobilephone != null" >
+        t_person_mobilephone = #{record.tPersonMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonEmail != null" >
+        t_person_email = #{record.tPersonEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonQq != null" >
+        t_person_qq = #{record.tPersonQq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonWetchat != null" >
+        t_person_wetchat = #{record.tPersonWetchat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonDuty != null" >
+        t_person_duty = #{record.tPersonDuty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonTitle != null" >
+        t_person_title = #{record.tPersonTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonIdentifyNum != null" >
+        t_person_identify_num = #{record.tPersonIdentifyNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonBirth != null" >
+        t_person_birth = #{record.tPersonBirth,jdbcType=DATE},
+      </if>
+      <if test="record.tPersonNation != null" >
+        t_person_nation = #{record.tPersonNation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonHighestDegree != null" >
+        t_person_highest_degree = #{record.tPersonHighestDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonPoliticsStatus != null" >
+        t_person_politics_status = #{record.tPersonPoliticsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonTakeJobDate != null" >
+        t_person_take_job_date = #{record.tPersonTakeJobDate,jdbcType=DATE},
+      </if>
+      <if test="record.tPersonJoinWorkDate != null" >
+        t_person_join_work_date = #{record.tPersonJoinWorkDate,jdbcType=DATE},
+      </if>
+      <if test="record.tPersonHobbay != null" >
+        t_person_hobbay = #{record.tPersonHobbay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonNodeAttributeId != null" >
+        t_person_node_attribute_id = #{record.tPersonNodeAttributeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.tPersonNotes != null" >
+        t_person_notes = #{record.tPersonNotes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPersonDepartId != null" >
+        t_person_depart_id = #{record.tPersonDepartId,jdbcType=BIGINT},
+      </if>
+      <if test="record.tPersonUnitId != null" >
+        t_person_unit_id = #{record.tPersonUnitId,jdbcType=BIGINT},
+      </if>
+      <if test="record.departName != null" >
+        depart_name = #{record.departName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unitName != null" >
+        unit_name = #{record.unitName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update v_bd_person_depart_unit
+    set t_person_id = #{record.tPersonId,jdbcType=VARCHAR},
+      t_person_type = #{record.tPersonType,jdbcType=VARCHAR},
+      t_person_username = #{record.tPersonUsername,jdbcType=VARCHAR},
+      t_person_pwd = #{record.tPersonPwd,jdbcType=VARCHAR},
+      t_person_truename = #{record.tPersonTruename,jdbcType=VARCHAR},
+      t_person_sex = #{record.tPersonSex,jdbcType=VARCHAR},
+      t_person_en_name = #{record.tPersonEnName,jdbcType=VARCHAR},
+      t_person_name_used = #{record.tPersonNameUsed,jdbcType=VARCHAR},
+      t_person_telephone = #{record.tPersonTelephone,jdbcType=VARCHAR},
+      t_person_fax = #{record.tPersonFax,jdbcType=VARCHAR},
+      t_person_addr = #{record.tPersonAddr,jdbcType=VARCHAR},
+      t_person_mobilephone = #{record.tPersonMobilephone,jdbcType=VARCHAR},
+      t_person_email = #{record.tPersonEmail,jdbcType=VARCHAR},
+      t_person_qq = #{record.tPersonQq,jdbcType=VARCHAR},
+      t_person_wetchat = #{record.tPersonWetchat,jdbcType=VARCHAR},
+      t_person_duty = #{record.tPersonDuty,jdbcType=VARCHAR},
+      t_person_title = #{record.tPersonTitle,jdbcType=VARCHAR},
+      t_person_identify_num = #{record.tPersonIdentifyNum,jdbcType=VARCHAR},
+      t_person_birth = #{record.tPersonBirth,jdbcType=DATE},
+      t_person_nation = #{record.tPersonNation,jdbcType=VARCHAR},
+      t_person_highest_degree = #{record.tPersonHighestDegree,jdbcType=VARCHAR},
+      t_person_politics_status = #{record.tPersonPoliticsStatus,jdbcType=VARCHAR},
+      t_person_take_job_date = #{record.tPersonTakeJobDate,jdbcType=DATE},
+      t_person_join_work_date = #{record.tPersonJoinWorkDate,jdbcType=DATE},
+      t_person_hobbay = #{record.tPersonHobbay,jdbcType=VARCHAR},
+      t_person_node_attribute_id = #{record.tPersonNodeAttributeId,jdbcType=BIGINT},
+      t_person_notes = #{record.tPersonNotes,jdbcType=VARCHAR},
+      t_person_depart_id = #{record.tPersonDepartId,jdbcType=BIGINT},
+      t_person_unit_id = #{record.tPersonUnitId,jdbcType=BIGINT},
+      depart_name = #{record.departName,jdbcType=VARCHAR},
+      unit_name = #{record.unitName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

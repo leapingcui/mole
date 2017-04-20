@@ -1,5 +1,9 @@
 package com.qijun.basicdata.dictionary.pojo;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.Pattern;
+
 public class TBdDictionary {
     private Long dictionaryId;
 
@@ -9,6 +13,8 @@ public class TBdDictionary {
 
     private String dictionaryContent;
 
+//    @Pattern(regexp = "^[1-9]\\d*$",message = "{tBdDictionary.dictionaryOrder.is.not.positive.integer}")
+//    @NotEmpty(message = "{tBdDictionary.dictionaryOrder.is.null}")
     private Integer dictionaryOrder;
 
     private String dictionaryNotes;

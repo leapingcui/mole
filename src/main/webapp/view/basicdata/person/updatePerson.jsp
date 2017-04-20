@@ -250,7 +250,7 @@
                     <ol class="breadcrumb">
                         <li><a href="${webRoot}/index.jsp"><i class="fa fa-dashboard"></i> 主页</a></li>
                         <li>基础资料管理</li>
-                        <li class="active">字典管理</li>
+                        <li class="active">人员管理</li>
                     </ol>
                 </section>
 
@@ -260,50 +260,143 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header">
-                                    <button type="button" class="btn btn-block btn-default btn-lg" id="back"style="width: 10%"
-                                    onclick="location.href='${webRoot}/dictController/insertUI.do'">新增</button>
+                                    <button type="button" onclick="history.back()" class="btn btn-block btn-default btn-lg" id="back"style="width: 10%">返回</button>
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body">
-                                    <table id="example1" class="table table-bordered table-striped">
-                                        <thead>
-                                        <tr>
-                                            <th>模块</th>
-                                            <th>类型</th>
-                                            <th>内容</th>
-                                            <th>排列顺序</th>
-                                            <th>操作</th>
-                                            <th>操作</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        <c:forEach items="${tBdDictionaries}" var="tBdDictionary">
+                                    <form action="${webRoot}/personController/update.do" method="post">
+                                        <table id="example1" class="table table-bordered table-striped">
                                             <tr>
-                                                <td>${tBdDictionary.dictionaryCommonCata}</td>
-                                                <td>${tBdDictionary.dictionaryDetailCata}</td>
-                                                <td>${tBdDictionary.dictionaryContent}</td>
-                                                <td>${tBdDictionary.dictionaryOrder}</td>
-                                                <td><a href="${webRoot}/dictController/updateUI.do?dictionaryId=${tBdDictionary.dictionaryId}">编辑</a> </td>
-                                                <td><a href="${webRoot}/dictController/delete.do?dictionaryId=${tBdDictionary.dictionaryId}"
-                                                       onclick="javascript:return del()">删除</a> </td>
+                                                <th>人员编号</th>
+                                                <td><input type="text" id="tPersonId" name="tPersonId"
+                                                    value="${vBdPersonDepartUnit.tPersonId}"></td>
+                                                <th>用户名</th>
+                                                <td><input type="text" id="tPersonUsername" name="tPersonUsername"
+                                                    value="${vBdPersonDepartUnit.tPersonUsername}"></td>
                                             </tr>
-                                        </c:forEach>
-
-                                        </tbody>
-
-                                        <tfoot>
-                                        <tr>
-                                            <th>模块</th>
-                                            <th>类型</th>
-                                            <th>内容</th>
-                                            <th>排列顺序</th>
-                                            <th>操作</th>
-                                            <th>操作</th>
-                                        </tr>
-                                        </tfoot>
-
-                                    </table>
+                                            <tr>
+                                                <th>人员类型</th>
+                                                <td><input type="text" id="tPersonType" name="tPersonType"
+                                                    value="${vBdPersonDepartUnit.tPersonType}"></td>
+                                                <th>真实姓名</th>
+                                                <td><input type="text" id="tPersonTruename" name="tPersonTruename"
+                                                    value="${vBdPersonDepartUnit.tPersonTruename}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>性别</th>
+                                                <td>
+                                                    <select id="tPersonSex" name="tPersonSex">
+                                                        <option value="男"
+                                                                <c:if test="${vBdPersonDepartUnit.tPersonSex eq '男'}">
+                                                                    selected="selected"
+                                                                </c:if>
+                                                        >男</option>
+                                                        <option value="女"
+                                                                <c:if test="${vBdPersonDepartUnit.tPersonSex eq '女'}">
+                                                                    selected="selected"
+                                                                </c:if>
+                                                        >女</option>
+                                                    </select>
+                                                </td>
+                                                <th>英文名</th>
+                                                <td><input type="text" id="tPersonEnName" name="tPersonEnName"
+                                                    value="${vBdPersonDepartUnit.tPersonEnName}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>曾用名</th>
+                                                <td><input type="text" id="tPersonNameUsed" name="tPersonNameUsed"
+                                                    value="${vBdPersonDepartUnit.tPersonNameUsed}" ></td>
+                                                <th>电话号码</th>
+                                                <td><input type="text" id="tPersonTelephone" name="tPersonTelephone"
+                                                    ${vBdPersonDepartUnit.tPersonTelephone}></td>
+                                            </tr>
+                                            <tr>
+                                                <th>传真</th>
+                                                <td><input type="text" id="tPersonFax" name="tPersonFax"
+                                                    value="${vBdPersonDepartUnit.tPersonFax}" ></td>
+                                                <th>地址</th>
+                                                <td><input type="text" id="tPersonAddr" name="tPersonAddr"
+                                                    value="${vBdPersonDepartUnit.tPersonAddr}" ></td>
+                                            </tr>
+                                            <tr>
+                                                <th>手机号</th>
+                                                <td><input type="text" id="tPersonMobilephone" name="tPersonMobilephone"
+                                                    value="${vBdPersonDepartUnit.tPersonMobilephone}" ></td>
+                                                <th>email</th>
+                                                <td><input type="text" id="tPersonEmail" name="tPersonEmail"
+                                                    value="${vBdPersonDepartUnit.tPersonEmail}" ></td>
+                                            </tr>
+                                            <tr>
+                                                <th>qq号</th>
+                                                <td><input type="text" id="tPersonQq" name="tPersonQq"
+                                                    value="${vBdPersonDepartUnit.tPersonQq}"></td>
+                                                <th>微信号</th>
+                                                <td><input type="text" id="tPersonWetchat" name="tPersonWetchat"
+                                                    value="${vBdPersonDepartUnit.tPersonWetchat}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>职务</th>
+                                                <td><input type="text" id="tPersonDuty" name="tPersonDuty"
+                                                    value="${vBdPersonDepartUnit.tPersonDuty}"></td>
+                                                <th>职称</th>
+                                                <td><input type="text" id="tPersonTitle" name="tPersonTitle"
+                                                    value="${vBdPersonDepartUnit.tPersonTitle}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>身份证号</th>
+                                                <td><input type="text" id="tPersonIdentifyNum" name="tPersonIdentifyNum"
+                                                    value="${vBdPersonDepartUnit.tPersonIdentifyNum}"></td>
+                                                <th>出生日期</th>
+                                                <td><input type="text" id="tPersonBirth" name="tPersonBirth"
+                                                    value="<fmt:formatDate value="${vBdPersonDepartUnit.tPersonBirth}" pattern="yyyy-MM-dd" />"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>民族</th>
+                                                <td><input type="text" id="tPersonNation" name="tPersonNation"
+                                                    value="${vBdPersonDepartUnit.tPersonNation}"></td>
+                                                <th>最高学位</th>
+                                                <td><input type="text" id="tPersonHighestDegree" name="tPersonHighestDegree"
+                                                    value="${vBdPersonDepartUnit.tPersonHighestDegree}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>政治面貌</th>
+                                                <td><input type="text" id="tPersonPoliticsStatus" name="tPersonPoliticsStatus"
+                                                    value="${vBdPersonDepartUnit.tPersonPoliticsStatus}"></td>
+                                                <th>参加工作时间</th>
+                                                <td><input type="text" id="tPersonTakeJobDate" name="tPersonTakeJobDate"
+                                                    value="<fmt:formatDate value="${vBdPersonDepartUnit.tPersonTakeJobDate}" pattern="yyyy-MM-dd" />"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>调入时间</th>
+                                                <td><input type="text" id="tPersonJoinWorkDate" name="tPersonJoinWorkDate"
+                                                    value="<fmt:formatDate value="${vBdPersonDepartUnit.tPersonJoinWorkDate}" pattern="yyyy-MM-dd" />"></td>
+                                                <th>爱好</th>
+                                                <td><input type="text" id="tPersonHobbay" name="tPersonHobbay"
+                                                    value="${vBdPersonDepartUnit.tPersonHobbay}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>部门编号</th>
+                                                <td><input type="text" id="tPersonDepartId" name="tPersonDepartId"
+                                                    value="${vBdPersonDepartUnit.tPersonDepartId}"></td>
+                                                <th>单位编号</th>
+                                                <td><input type="text" id="tPersonUnitId" name="tPersonUnitId"
+                                                    value="${vBdPersonDepartUnit.tPersonUnitId}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>备注</th>
+                                                <td colspan="3">
+                                                    <textarea id="tPersonNotes" name="tPersonNotes" rows="3" cols="110">
+                                                        ${vBdPersonDepartUnit.tPersonNotes}
+                                                    </textarea>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="4">
+                                                    <input type="submit" value="提交"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <input type="reset" value="重新填写"/></th>
+                                            </tr>
+                                        </table>
+                                    </form>
                                 </div>
                                 <!-- /.box-body -->
                             </div>
@@ -372,16 +465,6 @@
             "autoWidth": false
         });
     });
-</script>
-<script type="text/javascript">
-    function del() {
-        var msg = "您真的确定要删除吗？";
-        if (confirm(msg)==true){
-            return true;
-        }else{
-            return false;
-        }
-    }
 </script>
 </body>
 </html>

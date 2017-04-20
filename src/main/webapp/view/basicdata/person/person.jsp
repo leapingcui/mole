@@ -250,7 +250,7 @@
                     <ol class="breadcrumb">
                         <li><a href="${webRoot}/index.jsp"><i class="fa fa-dashboard"></i> 主页</a></li>
                         <li>基础资料管理</li>
-                        <li class="active">字典管理</li>
+                        <li class="active">人员管理</li>
                     </ol>
                 </section>
 
@@ -261,31 +261,39 @@
                             <div class="box">
                                 <div class="box-header">
                                     <button type="button" class="btn btn-block btn-default btn-lg" id="back"style="width: 10%"
-                                    onclick="location.href='${webRoot}/dictController/insertUI.do'">新增</button>
+                                            onclick="location.href='${webRoot}/personController/insertUI.do'">新增</button>
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body">
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
-                                            <th>模块</th>
-                                            <th>类型</th>
-                                            <th>内容</th>
-                                            <th>排列顺序</th>
+                                            <th>人员编号</th>
+                                            <th>用户名</th>
+                                            <th>真实姓名</th>
+                                            <th>性别</th>
+                                            <th>出生年月</th>
+                                            <th>人员类型</th>
+                                            <th>手机号</th>
+                                            <th>操作</th>
                                             <th>操作</th>
                                             <th>操作</th>
                                         </tr>
                                         </thead>
                                         <tbody>
 
-                                        <c:forEach items="${tBdDictionaries}" var="tBdDictionary">
+                                        <c:forEach items="${vBdPersonDepartUnits}" var="vBdPersonDepartUnit">
                                             <tr>
-                                                <td>${tBdDictionary.dictionaryCommonCata}</td>
-                                                <td>${tBdDictionary.dictionaryDetailCata}</td>
-                                                <td>${tBdDictionary.dictionaryContent}</td>
-                                                <td>${tBdDictionary.dictionaryOrder}</td>
-                                                <td><a href="${webRoot}/dictController/updateUI.do?dictionaryId=${tBdDictionary.dictionaryId}">编辑</a> </td>
-                                                <td><a href="${webRoot}/dictController/delete.do?dictionaryId=${tBdDictionary.dictionaryId}"
+                                                <td>${vBdPersonDepartUnit.tPersonId}</td>
+                                                <td>${vBdPersonDepartUnit.tPersonUsername}</td>
+                                                <td>${vBdPersonDepartUnit.tPersonTruename}</td>
+                                                <td>${vBdPersonDepartUnit.tPersonSex}</td>
+                                                <td><fmt:formatDate value="${vBdPersonDepartUnit.tPersonBirth}" pattern="yyyy-MM-dd" /> </td>
+                                                <td>${vBdPersonDepartUnit.tPersonType}</td>
+                                                <td>${vBdPersonDepartUnit.tPersonMobilephone}</td>
+                                                <td><a href="${webRoot}/personDepartUnitController/loadPersonDepartUnit.do?tPersonId=${vBdPersonDepartUnit.tPersonId}">详情</a> </td>
+                                                <td><a href="${webRoot}/personController/updateUI.do?tPersonId=${vBdPersonDepartUnit.tPersonId}">编辑</a> </td>
+                                                <td><a href="${webRoot}/personController/delete.do?tPersonId=${vBdPersonDepartUnit.tPersonId}"
                                                        onclick="javascript:return del()">删除</a> </td>
                                             </tr>
                                         </c:forEach>
@@ -294,10 +302,14 @@
 
                                         <tfoot>
                                         <tr>
-                                            <th>模块</th>
-                                            <th>类型</th>
-                                            <th>内容</th>
-                                            <th>排列顺序</th>
+                                            <th>人员编号</th>
+                                            <th>用户名</th>
+                                            <th>真实姓名</th>
+                                            <th>性别</th>
+                                            <th>出生年月</th>
+                                            <th>人员类型</th>
+                                            <th>手机号</th>
+                                            <th>操作</th>
                                             <th>操作</th>
                                             <th>操作</th>
                                         </tr>

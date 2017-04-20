@@ -6,6 +6,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -36,10 +39,31 @@ public class DictController {
         return "view/basicdata/dictionary/insertDict";
     }
 
+    @RequestMapping("/insert.do")
+    public String insert( TBdDictionary tBdDictionary) throws Exception{
+        LOGGER.info("接受到的数据:" + tBdDictionary);
+        dictService.insert(tBdDictionary);
+        return "redirect:showDict.do";
+    }
+
     @RequestMapping("/updateUI.do")
     public String updateUI(Model model,Long dictionaryId) {
-
+        TBdDictionary tBdDictionary = dictService.selectByPrimaryKey(dictionaryId);
+        model.addAttribute("tBdDictionary", tBdDictionary);
         return "view/basicdata/dictionary/updateDict";
     }
 
+    @RequestMapping("/update.do")
+    public String update(TBdDictionary tBdDictionary){
+        LOGGER.info("接收到的参数对象：" + tBdDictionary);
+        dictService.update(tBdDictionary);
+        return "redirect:showDict.do";
+    }
+
+    @RequestMapping("/delete.do")
+    public String delete(Long dictionaryId) {
+        LOGGER.info("接收到的id:" + dictionaryId);
+        dictService.deleteByPrimaryKey(dictionaryId);
+        return "redirect:showDict.do";
+    }
 }

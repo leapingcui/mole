@@ -250,7 +250,7 @@
                     <ol class="breadcrumb">
                         <li><a href="${webRoot}/index.jsp"><i class="fa fa-dashboard"></i> 主页</a></li>
                         <li>基础资料管理</li>
-                        <li class="active">字典管理</li>
+                        <li class="active">人员管理</li>
                     </ol>
                 </section>
 
@@ -260,48 +260,93 @@
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header">
-                                    <button type="button" class="btn btn-block btn-default btn-lg" id="back"style="width: 10%"
-                                    onclick="location.href='${webRoot}/dictController/insertUI.do'">新增</button>
+                                    <button type="button" onclick="history.back()" class="btn btn-block btn-default btn-lg" id="back"style="width: 10%">返回</button>
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body">
                                     <table id="example1" class="table table-bordered table-striped">
-                                        <thead>
                                         <tr>
-                                            <th>模块</th>
-                                            <th>类型</th>
-                                            <th>内容</th>
-                                            <th>排列顺序</th>
-                                            <th>操作</th>
-                                            <th>操作</th>
+                                            <th>人员编号</th>
+                                            <td>${vBdPersonDepartUnit.tPersonId}</td>
+                                            <th>用户名</th>
+                                            <td>${vBdPersonDepartUnit.tPersonUsername}</td>
                                         </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        <c:forEach items="${tBdDictionaries}" var="tBdDictionary">
-                                            <tr>
-                                                <td>${tBdDictionary.dictionaryCommonCata}</td>
-                                                <td>${tBdDictionary.dictionaryDetailCata}</td>
-                                                <td>${tBdDictionary.dictionaryContent}</td>
-                                                <td>${tBdDictionary.dictionaryOrder}</td>
-                                                <td><a href="${webRoot}/dictController/updateUI.do?dictionaryId=${tBdDictionary.dictionaryId}">编辑</a> </td>
-                                                <td><a href="${webRoot}/dictController/delete.do?dictionaryId=${tBdDictionary.dictionaryId}"
-                                                       onclick="javascript:return del()">删除</a> </td>
-                                            </tr>
-                                        </c:forEach>
-
-                                        </tbody>
-
-                                        <tfoot>
                                         <tr>
-                                            <th>模块</th>
-                                            <th>类型</th>
-                                            <th>内容</th>
-                                            <th>排列顺序</th>
-                                            <th>操作</th>
-                                            <th>操作</th>
+                                            <th>人员类型</th>
+                                            <td>${vBdPersonDepartUnit.tPersonType}</td>
+                                            <th>真实姓名</th>
+                                            <td>${vBdPersonDepartUnit.tPersonTruename}</td>
                                         </tr>
-                                        </tfoot>
+                                        <tr>
+                                            <th>性别</th>
+                                            <td>${vBdPersonDepartUnit.tPersonSex}</td>
+                                            <th>英文名</th>
+                                            <td>${vBdPersonDepartUnit.tPersonEnName}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>曾用名</th>
+                                            <td>${vBdPersonDepartUnit.tPersonNameUsed}</td>
+                                            <th>电话号码</th>
+                                            <td>${vBdPersonDepartUnit.tPersonTelephone}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>传真</th>
+                                            <td>${vBdPersonDepartUnit.tPersonFax}</td>
+                                            <th>地址</th>
+                                            <td>${vBdPersonDepartUnit.tPersonAddr}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>手机号</th>
+                                            <td>${vBdPersonDepartUnit.tPersonMobilephone}</td>
+                                            <th>email</th>
+                                            <td>${vBdPersonDepartUnit.tPersonEmail}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>qq号</th>
+                                            <td>${vBdPersonDepartUnit.tPersonQq}</td>
+                                            <th>微信号</th>
+                                            <td>${vBdPersonDepartUnit.tPersonWetchat}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>职务</th>
+                                            <td>${vBdPersonDepartUnit.tPersonDuty}</td>
+                                            <th>职称</th>
+                                            <td>${vBdPersonDepartUnit.tPersonTitle}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>身份证号</th>
+                                            <td>${vBdPersonDepartUnit.tPersonIdentifyNum}</td>
+                                            <th>出生日期</th>
+                                            <td><fmt:formatDate value="${vBdPersonDepartUnit.tPersonBirth}" pattern="yyyy-MM-dd" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>民族</th>
+                                            <td>${vBdPersonDepartUnit.tPersonNation}</td>
+                                            <th>最高学位</th>
+                                            <td>${vBdPersonDepartUnit.tPersonHighestDegree}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>政治面貌</th>
+                                            <td>${vBdPersonDepartUnit.tPersonPoliticsStatus}</td>
+                                            <th>参加工作时间</th>
+                                            <td><fmt:formatDate value="${vBdPersonDepartUnit.tPersonTakeJobDate}" pattern="yyyy-MM-dd" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>调入时间</th>
+                                            <td><fmt:formatDate value="${vBdPersonDepartUnit.tPersonJoinWorkDate}" pattern="yyyy-MM-dd" /></td>
+                                            <th>爱好</th>
+                                            <td>${vBdPersonDepartUnit.tPersonHobbay}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>部门名称</th>
+                                            <td>${vBdPersonDepartUnit.departName}</td>
+                                            <th>单位名称</th>
+                                            <td>${vBdPersonDepartUnit.unitName}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>备注</th>
+                                            <td colspan="3">${vBdPersonDepartUnit.tPersonNotes}</td>
+                                        </tr>
 
                                     </table>
                                 </div>
@@ -372,16 +417,6 @@
             "autoWidth": false
         });
     });
-</script>
-<script type="text/javascript">
-    function del() {
-        var msg = "您真的确定要删除吗？";
-        if (confirm(msg)==true){
-            return true;
-        }else{
-            return false;
-        }
-    }
 </script>
 </body>
 </html>

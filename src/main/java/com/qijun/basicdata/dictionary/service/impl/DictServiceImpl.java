@@ -32,19 +32,19 @@ public class DictServiceImpl implements DictService {
     }
 
     public TBdDictionary selectByPrimaryKey(Long dictionaryId) {
-        return null;
+        return tBdDictionaryMapper.selectByPrimaryKey(dictionaryId);
     }
 
     public int insert(TBdDictionary tBdDictionary) {
-        return 0;
+        return tBdDictionaryMapper.insert(tBdDictionary);
     }
 
     public int update(TBdDictionary tBdDictionary) {
-        return 0;
+        return tBdDictionaryMapper.updateByPrimaryKey(tBdDictionary);
     }
 
     public int deleteByPrimaryKey(Long dictionaryId) {
-        return 0;
+        return tBdDictionaryMapper.deleteByPrimaryKey(dictionaryId);
     }
 
     public int deleteMulti(Long[] dictionaryIds) {

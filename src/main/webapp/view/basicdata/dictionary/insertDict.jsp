@@ -255,37 +255,35 @@
                 </section>
 
                 <!-- Main content -->
-                <form action="${webRoot}/goodsController/insert.do" method="post">
+                <div class="box-header">
+                    <button type="button" onclick="history.back()" class="btn btn-block btn-default btn-lg" id="back"style="width: 10%">返回</button>
+                </div>
+                <form action="${webRoot}/dictController/insert.do" method="post">
                     <table id="example1" class="table table-bordered table-striped">
                         <tr>
                             <th>模块</th>
-                            <td><input type="text" id="goodsCommon.gcName"
-                                       name="goodsCommon.gcName"/>
-                                <input type="hidden" id="goodsCommon.gcHeadType"
-                                       name="goodsCommon.gcHeadType" value="设备"/>
+                            <td><input type="text" id="dictionaryCommonCata" name="dictionaryCommonCata"/>
                             </td>
                         </tr>
                         <tr>
                             <th>类型</th>
-                            <td><input type="text" id="goodsCommon.gcType"
-                                       name="goodsCommon.gcType"/></td>
+                            <td><input type="text" id="dictionaryDetailCata" name="dictionaryDetailCata"/></td>
                         </tr>
 
                         <tr>
                             <th>内容</th>
-                            <td><input type="text" id="goodsCommon.gcCountingUnit"
-                                       name="goodsCommon.gcCountingUnit"/></td>
+                            <td><input type="text" id="dictionaryContent" name="dictionaryContent"/></td>
                         </tr>
 
                         <tr>
                             <th>排列顺序</th>
-                            <td><input type="text" id="goodsCommon.gcIsIntCounting"
-                                       name="goodsCommon.gcIsIntCounting"/></td>
+                            <td><input type="text" id="dictionaryOrder" name="dictionaryOrder"/></td>
                         </tr>
 
                         <tr>
                             <th></th>
-                            <td><input type="submit" value="提交"/><input type="reset" value="重新填写"/>
+                            <td><input type="submit" value="提交"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="reset" value="重新填写"/>
                             </td>
                         </tr>
 
