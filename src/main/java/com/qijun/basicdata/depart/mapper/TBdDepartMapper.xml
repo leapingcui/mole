@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qijun.basicdata.depart.mapper.TBdDepartMapper" >
+  <resultMap id="BaseResultMap" type="com.qijun.basicdata.depart.pojo.TBdDepart" >
+    <id column="depart_id" property="departId" jdbcType="BIGINT" />
+    <result column="depart_name" property="departName" jdbcType="VARCHAR" />
+    <result column="depart_telephone" property="departTelephone" jdbcType="VARCHAR" />
+    <result column="depart_telephone2" property="departTelephone2" jdbcType="VARCHAR" />
+    <result column="depart_function" property="departFunction" jdbcType="VARCHAR" />
+    <result column="depart_intruduction_file_path" property="departIntruductionFilePath" jdbcType="VARCHAR" />
+    <result column="depart_node_attribute_id" property="departNodeAttributeId" jdbcType="BIGINT" />
+    <result column="depart_notes" property="departNotes" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    depart_id, depart_name, depart_telephone, depart_telephone2, depart_function, depart_intruduction_file_path, 
+    depart_node_attribute_id, depart_notes
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.qijun.basicdata.depart.pojo.TBdDepartExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_bd_depart
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_bd_depart
+    where depart_id = #{departId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_bd_depart
+    where depart_id = #{departId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qijun.basicdata.depart.pojo.TBdDepartExample" >
+    delete from t_bd_depart
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qijun.basicdata.depart.pojo.TBdDepart" >
+    insert into t_bd_depart (depart_id, depart_name, depart_telephone, 
+      depart_telephone2, depart_function, depart_intruduction_file_path, 
+      depart_node_attribute_id, depart_notes)
+    values (#{departId,jdbcType=BIGINT}, #{departName,jdbcType=VARCHAR}, #{departTelephone,jdbcType=VARCHAR}, 
+      #{departTelephone2,jdbcType=VARCHAR}, #{departFunction,jdbcType=VARCHAR}, #{departIntruductionFilePath,jdbcType=VARCHAR}, 
+      #{departNodeAttributeId,jdbcType=BIGINT}, #{departNotes,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qijun.basicdata.depart.pojo.TBdDepart" >
+    insert into t_bd_depart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="departId != null" >
+        depart_id,
+      </if>
+      <if test="departName != null" >
+        depart_name,
+      </if>
+      <if test="departTelephone != null" >
+        depart_telephone,
+      </if>
+      <if test="departTelephone2 != null" >
+        depart_telephone2,
+      </if>
+      <if test="departFunction != null" >
+        depart_function,
+      </if>
+      <if test="departIntruductionFilePath != null" >
+        depart_intruduction_file_path,
+      </if>
+      <if test="departNodeAttributeId != null" >
+        depart_node_attribute_id,
+      </if>
+      <if test="departNotes != null" >
+        depart_notes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="departId != null" >
+        #{departId,jdbcType=BIGINT},
+      </if>
+      <if test="departName != null" >
+        #{departName,jdbcType=VARCHAR},
+      </if>
+      <if test="departTelephone != null" >
+        #{departTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="departTelephone2 != null" >
+        #{departTelephone2,jdbcType=VARCHAR},
+      </if>
+      <if test="departFunction != null" >
+        #{departFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="departIntruductionFilePath != null" >
+        #{departIntruductionFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="departNodeAttributeId != null" >
+        #{departNodeAttributeId,jdbcType=BIGINT},
+      </if>
+      <if test="departNotes != null" >
+        #{departNotes,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qijun.basicdata.depart.pojo.TBdDepartExample" resultType="java.lang.Integer" >
+    select count(*) from t_bd_depart
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_bd_depart
+    <set >
+      <if test="record.departId != null" >
+        depart_id = #{record.departId,jdbcType=BIGINT},
+      </if>
+      <if test="record.departName != null" >
+        depart_name = #{record.departName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departTelephone != null" >
+        depart_telephone = #{record.departTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departTelephone2 != null" >
+        depart_telephone2 = #{record.departTelephone2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departFunction != null" >
+        depart_function = #{record.departFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departIntruductionFilePath != null" >
+        depart_intruduction_file_path = #{record.departIntruductionFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departNodeAttributeId != null" >
+        depart_node_attribute_id = #{record.departNodeAttributeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.departNotes != null" >
+        depart_notes = #{record.departNotes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_bd_depart
+    set depart_id = #{record.departId,jdbcType=BIGINT},
+      depart_name = #{record.departName,jdbcType=VARCHAR},
+      depart_telephone = #{record.departTelephone,jdbcType=VARCHAR},
+      depart_telephone2 = #{record.departTelephone2,jdbcType=VARCHAR},
+      depart_function = #{record.departFunction,jdbcType=VARCHAR},
+      depart_intruduction_file_path = #{record.departIntruductionFilePath,jdbcType=VARCHAR},
+      depart_node_attribute_id = #{record.departNodeAttributeId,jdbcType=BIGINT},
+      depart_notes = #{record.departNotes,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qijun.basicdata.depart.pojo.TBdDepart" >
+    update t_bd_depart
+    <set >
+      <if test="departName != null" >
+        depart_name = #{departName,jdbcType=VARCHAR},
+      </if>
+      <if test="departTelephone != null" >
+        depart_telephone = #{departTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="departTelephone2 != null" >
+        depart_telephone2 = #{departTelephone2,jdbcType=VARCHAR},
+      </if>
+      <if test="departFunction != null" >
+        depart_function = #{departFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="departIntruductionFilePath != null" >
+        depart_intruduction_file_path = #{departIntruductionFilePath,jdbcType=VARCHAR},
+      </if>
+      <if test="departNodeAttributeId != null" >
+        depart_node_attribute_id = #{departNodeAttributeId,jdbcType=BIGINT},
+      </if>
+      <if test="departNotes != null" >
+        depart_notes = #{departNotes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where depart_id = #{departId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qijun.basicdata.depart.pojo.TBdDepart" >
+    update t_bd_depart
+    set depart_name = #{departName,jdbcType=VARCHAR},
+      depart_telephone = #{departTelephone,jdbcType=VARCHAR},
+      depart_telephone2 = #{departTelephone2,jdbcType=VARCHAR},
+      depart_function = #{departFunction,jdbcType=VARCHAR},
+      depart_intruduction_file_path = #{departIntruductionFilePath,jdbcType=VARCHAR},
+      depart_node_attribute_id = #{departNodeAttributeId,jdbcType=BIGINT},
+      depart_notes = #{departNotes,jdbcType=VARCHAR}
+    where depart_id = #{departId,jdbcType=BIGINT}
+  </update>
+</mapper>
